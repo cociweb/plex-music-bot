@@ -13,22 +13,22 @@ class WeightedPicker():
 			self._weight_totals = self._generate_weight_list()
 		return self._weight_totals
 
-        def _build_weight_totals(self):
-                # Example implementation; yours may differ
-                totals = []
-                running_total = 0
-                for item in self.input_weights:
-                        running_total += getattr(item, self.weight_key, 1)
-                        totals.append(running_total)
-                return totals
+	def _build_weight_totals(self):
+		# Example implementation; yours may differ
+		totals = []
+		running_total = 0
+		for item in self.input_weights:
+			running_total += getattr(item, self.weight_key, 1)
+			totals.append(running_total)
+		return totals
 	
 	def next(self):
-                if not self.input_weights:
-                        raise ValueError("WeightedPicker: No items to pick from.")
-                if self._weight_totals is None:
-                        self._weight_totals = self._build_weight_totals()
-                if not self._weight_totals:
-                        raise ValueError("WeightedPicker: No weights to pick from.")
+		if not self.input_weights:
+			raise ValueError("WeightedPicker: No items to pick from.")
+		if self._weight_totals is None:
+			self._weight_totals = self._build_weight_totals()
+		if not self._weight_totals:
+			raise ValueError("WeightedPicker: No weights to pick from.")
 		weight_total_count = len(self._weight_totals)
 		target_number = random.randint(0, self._weight_totals[-1] - 1)
 		mid_level = 0
