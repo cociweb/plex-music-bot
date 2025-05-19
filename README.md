@@ -19,7 +19,7 @@ Install requirements with pip:
 ## Example Usage
 
 ```
-python generate.py -u "plex_username" -p "plex_password" -r "plex_server" -s "Music" -t "Music Bot" -c 120
+venv/bin/python3 generate.py -u "plex_username" -p "plex_password" -r "plex_server" -s "Music" -t "Music Bot" -c 120
 ```
 
 ## How Does It Work
