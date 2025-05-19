@@ -13,7 +13,7 @@ Install requirements with pip: `pip install -r requirements.txt`
 ## Example Usage
 
 ```
-python generate.py -u "plex_username" -p "plex_password" -r "plex_server" -t "My Cool Playlist" -c 120
+python generate.py -u "plex_username" -p "plex_password" -r "plex_server" -s "Music" -t "Music Bot" -c 120
 ```
 
 ## How Does It Work
