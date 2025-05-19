@@ -10,6 +10,7 @@ if __name__ == "__main__":
 	parser.add_argument('--username', '-u', help='Plex account username/email', required=True, type=str)
 	parser.add_argument('--password', '-p', help='Plex account password', required=True, type=str)
 	parser.add_argument('--resource', '-r', help='Plex server resource name', required=True, type=str)
+	parser.add_argument('--section', '-s',  default="Music", help="Plex library section name (default: Music)", type=str)
 	parser.add_argument('--playlist_title', '-t', help='Name of target playlist to update', default='Music Bot', type=str)
 	parser.add_argument('--track_count', '-c', help='Number of tracks to add to playlist', default=50, type=int)
 
@@ -21,6 +22,7 @@ if __name__ == "__main__":
 	    username=args.username,
 	    password=args.password,
 	    resource=args.resource
+	    section_name=args.section
 	).build_playlist(
 	    playlist_title=args.playlist_title,
 	    track_count=int(args.track_count)
