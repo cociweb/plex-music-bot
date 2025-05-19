@@ -35,12 +35,21 @@ class PlexPlaylistBuilder():
 		]
 		print('Building track groupings... DONE.')
 		print('Generating playlist...')
-		while len(playlist_songs) < track_count:
+		max_iterations = track_count * 10  # Arbitrary safety cap
+		iterations = 0
+		previous_len = len(playlist_songs)
+		
+		while len(playlist_songs) < track_count and iterations < max_iterations:
 			for slot_picker in playlist_slots:
 				next_track = slot_picker.next()['track']
 				playlist_songs.add(next_track)
 				if len(playlist_songs) >= track_count:
 					break
+			if len(playlist_songs) == previous_len:
+				print("No new tracks could be added. Breaking out to avoid infinite loop.")
+				break
+			previous_len = len(playlist_songs)
+			iterations += 1
 		playlist_songs = list(playlist_songs)
 		print('Generating playlist... DONE')
 
