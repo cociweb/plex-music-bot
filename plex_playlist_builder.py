@@ -8,11 +8,14 @@ from utils.weighted_picker import WeightedPicker
 
 
 class PlexPlaylistBuilder():
-	def __init__(self, username=None, password=None, resource=None):
-		plex_library = PlexConnection(
-			username=username, password=password, resource=resource
-		).music_library
-		self.music_library = PlexMusic(plex_library)
+	def __init__(self, username=None, password=None, resource=None, section_name="Music"):
+	        plex_library = PlexConnection(
+			username=username,
+			password=password,
+			resource=resource,
+			section_name=section_name
+	        ).music_library
+	        self.music_library = PlexMusic(plex_library)
 
 		# Private properties
 		self._popular_tracks = self._recent_tracks = self._spice_tracks = None
