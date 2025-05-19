@@ -15,8 +15,8 @@ class PlexPlaylistBuilder():
 			resource=resource,
 			section_name=section_name
 	        ).music_library
-	        self.music_library = PlexMusic(plex_library)
-
+		self.music_library = PlexMusic(plex_library)
+		
 		# Private properties
 		self._popular_tracks = self._recent_tracks = self._spice_tracks = None
 		self._play_count_min = self._play_count_max = None
