@@ -28,6 +28,7 @@ class PlexMusic():
 		return self.library.all(libtype='artist')
 
 	def library_search(self, sort_value, media_type, limit):
+		limit = int(limit)
 		return self.library.search(sort=sort_value, libtype=media_type, limit=limit)
 
 	def replace_playlist_tracks(self, playlist_title, playlist_songs):
