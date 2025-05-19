@@ -12,7 +12,7 @@ git clone https://github.com/cociweb/plex-music-bot .
 ```
 install venv:
 ```
-python3 -m venv .
+python3 -m venv venv
 ```
 initialize pip:
 ```
