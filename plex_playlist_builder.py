@@ -97,7 +97,7 @@ class PlexPlaylistBuilder():
 
 	@property
 	def last_played_min(self):
-		if self._last_played_min is None:
+		if self._last_played_min is None and not getattr(self, "_is_building_mix_max_values", False):
 			self._build_mix_max_values()
 		return self._last_played_min
 
@@ -137,27 +137,26 @@ class PlexPlaylistBuilder():
 
 	@property
 	def genre_play_count_min(self):
-		if self._genre_play_count_min is None:
+		# Prevent reentrancy/recursion
+		if self._genre_play_count_min is None and not getattr(self, "_is_building_mix_max_values", False):
 			self._build_mix_max_values()
-		if self._genre_play_count_min is None:
-			self._genre_play_count_min = 0
 		return self._genre_play_count_min
-
+	
 	@property
 	def genre_play_count_max(self):
-		if not self._genre_play_count_max:
+		if self._genre_play_count_max is None and not getattr(self, "_is_building_mix_max_values", False):
 			self._build_mix_max_values()
 		return self._genre_play_count_max
-
+	
 	@property
 	def genre_play_counts(self):
-		if not self._genre_play_counts:
+		if self._genre_play_counts is None and not getattr(self, "_is_building_mix_max_values", False):
 			self._build_mix_max_values()
 		return self._genre_play_counts
-
+	
 	@property
 	def genre_song_counts(self):
-		if not self._genre_song_counts:
+		if self._genre_song_counts is None and not getattr(self, "_is_building_mix_max_values", False):
 			self._build_mix_max_values()
 		return self._genre_song_counts
 
@@ -165,6 +164,18 @@ class PlexPlaylistBuilder():
 	# Private methods
 
 	def _build_mix_max_values(self):
+		if getattr(self, "_is_building_mix_max_values", False):
+			# Already building, prevent recursion
+			return
+		self._is_building_mix_max_values = True
+		
+		# Initialize caches to sentinel values to break recursive property access
+		self._genre_play_counts = {}
+		self._genre_song_counts = {}
+		self._genre_play_count_min = 0
+		self._genre_play_count_max = 0
+		self._last_played_min = None
+		
 		# Convert calculateMaxMinValues
 		print('Building min/max music library values...')
 		min_played_at = datetime.utcnow()
@@ -200,6 +211,8 @@ class PlexPlaylistBuilder():
 		self._genre_play_count_max = max_genre_plays
 		self._last_played_min = min_played_at
 		print('Building min/max music library values... DONE')
+		
+		self._is_building_mix_max_values = False
 
 	def _get_track_rating_normalized(self, plex_track_rating):
 		rating_normalized_to_apply = 0
