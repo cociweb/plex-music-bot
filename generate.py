@@ -21,7 +21,7 @@ if __name__ == "__main__":
 	PlexPlaylistBuilder(
 	    username=args.username,
 	    password=args.password,
-	    resource=args.resource
+	    resource=args.resource,
 	    section_name=args.section
 	).build_playlist(
 	    playlist_title=args.playlist_title,
