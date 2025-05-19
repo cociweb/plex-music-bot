@@ -6,8 +6,14 @@ Python scripts for automatically building radio-like, Daily Mix / Discover style
 
 
 ## Getting Started
-
-Install requirements with pip: `pip install -r requirements.txt`
+clone repository:
+`git clone https://github.com/cociweb/plex-music-bot .`
+install venv:
+`python3 -m venv .`
+initialize pip:
+`venv/bin/python3 -m ensurepip --default-pip`
+Install requirements with pip: 
+`venv/bin/python3 -m pip install -r requirements.txt`
 
 
 ## Example Usage
