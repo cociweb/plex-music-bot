@@ -1,15 +1,16 @@
 from plexapi.myplex import MyPlexAccount
 
 class PlexConnection():
-	def __init__(self, username=None, password=None, resource=None):
+	def __init__(self, username=None, password=None, resource=None, section_name="Music"):
 		self.username = username
 		self.password = password
 		self.resource = resource
 		self._server = None
+		self._section_name = section_name
 
 	@property
-	def music_library(self, section_name='Zene'):
-		return self.library.section(section_name)
+	def music_library(self):
+		return self.library.section(self._section_name)
 
 	@property
 	def library(self):
