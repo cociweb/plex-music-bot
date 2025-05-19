@@ -8,7 +8,7 @@ class PlexConnection():
 		self._server = None
 
 	@property
-	def music_library(self, section_name='Music'):
+	def music_library(self, section_name='Zene'):
 		return self.library.section(section_name)
 
 	@property
