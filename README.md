@@ -36,7 +36,7 @@ Random playlists are best when they are not random. Out of the box, this script 
 
 First, it creates three groups of songs from your music library:
 
-1. Popular Tracks - The top 15% of your music library as ranked by total play count
+1. Popular Tracks - The top 30% of your music library as ranked by total play count
 2. Recent Tracks - The 15% of your music library you've most recently added
 3. Spice Tracks - A truly random selection of other songs from your music library
 
