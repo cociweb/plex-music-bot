@@ -311,7 +311,7 @@ class PlexPlaylistBuilder():
 	def _generate_popular_tracks(self):
 		print('Generating popular tracks...')
 		popular_tracks = []
-		play_count = self.music_library.total_track_count * 0.15
+		play_count = self.music_library.total_track_count * 0.30
 		if play_count > 500:
 			play_count = 500
 		if play_count < 1:
